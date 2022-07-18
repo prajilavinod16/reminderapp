@@ -62,6 +62,13 @@ app.post('/getEvent',jwtMiddleware,(req,res)=>{
         res.status(result.statusCode).json(result)
     })
 })
+// removeEvent api
+app.post('/removeEvent',jwtMiddleware,(req,res)=>{
+    dataservice.removeEvent(req,req.k)
+    .then(result=>{
+        res.status(result.statusCode).json(result)
+    })
+})
 
 
 //set port number

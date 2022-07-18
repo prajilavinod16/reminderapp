@@ -115,12 +115,31 @@ const getEvent = (req,currentUserid)=>{
         }
     })
 }
+const removeEvent=(req,k)=>{
+let currentUserid=req.currentUserid
+console.log(currentUserid);
 
+return db.User.findOne({
+    userid:currentUserid
+}).then(user=>{
+    if(user){
+        console.log(user);
+        user.event.splice(k,1)
+    }
+    user.save()
+    return{
+        status:true,
+        message:"event deleted",
+        statusCode:200
+    }
+})
 
+}
 
 module.exports={
     register,
     login,
     addEvent,
-    getEvent
+    getEvent,
+    removeEvent
 }
